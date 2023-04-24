@@ -1,9 +1,25 @@
 import { Cover } from "components/Cover";
 import { Heading } from "components/Heading";
+import { Paragraph } from "components/Paragraph";
+import { theme } from "theme";
 
 export const BlockRender = ({ blocks }) => {
   return blocks.map((block) => {
+    console.log(block.name);
     switch (block.name) {
+      case "core/paragraph": {
+        return (
+          <Paragraph
+            textAlign={block.attributes.textAlign}
+            content={block.attributes.content}
+            textColor={
+              theme[block.attributes.textColor] ||
+              block.attributes.style?.text?.color
+            }
+            key={block.id}
+          />
+        );
+      }
       case "core/heading": {
         return (
           <Heading
